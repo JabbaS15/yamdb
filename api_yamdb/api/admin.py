@@ -1,5 +1,4 @@
 from django.contrib.admin import ModelAdmin, site
-
 from users.models import CustomUser
 
 

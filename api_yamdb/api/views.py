@@ -1,8 +1,8 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import filters, mixins, permissions, viewsets
 from reviews.models import Category, Genre, Review, Title
-from users.permissions import (AuthorOrReadOnly, IsStaffOnly,
-                               ReadOnly, AdminOnly)
+from users.permissions import (AdminOnly, AuthorOrReadOnly, IsStaffOnly,
+                               ReadOnly)
 
 from .filters import TitleFilter
 from .serializers import (CategorySerializer, CommentSerializer,

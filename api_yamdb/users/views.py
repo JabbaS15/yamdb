@@ -8,7 +8,6 @@ from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenViewBase
-
 from users import serializers
 from users.models import CustomUser
 from users.permissions import AdminOnly
