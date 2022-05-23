@@ -32,7 +32,7 @@ jobs:
     if: github.ref == 'refs/heads/master'
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to Docker
@@ -45,7 +45,7 @@ jobs:
         with:
           push: true
           context: api_yamdb
-          tags: ${{ secrets.DOCKER_TAGS }}:latest
+          tags: jabbas15/yamdb_final:latest
 
   deploy:
       runs-on: ubuntu-latest
