@@ -9,10 +9,7 @@ services:
       - ./.env
 
   web:
-    build:
-      context: ../
-      dockerfile: ./api_yamdb/Dockerfile
-
+    image: jabbas15/yamdb_final:latest
     restart: always
     volumes:
       - static_value:/app/static/
