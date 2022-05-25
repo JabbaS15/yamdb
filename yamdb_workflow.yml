@@ -49,8 +49,8 @@ jobs:
         uses: docker/build-push-action@v2
 
         with:
+          context: ./api_yamdb
           push: true
-          context: ./api_yamdb/
           tags: jabbas15/yamdb_final:latest
 
   deploy:

@@ -10,7 +10,6 @@ services:
 
   web:
     image: jabbas15/yamdb_final:latest
-
     restart: always
     volumes:
       - static_value:/app/static/
