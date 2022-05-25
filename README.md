@@ -1,5 +1,9 @@
 ![example workflow](https://github.com/JabbaS15/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
-## Описание проетка:
+![django version](https://img.shields.io/badge/Django-2.2.16-green)
+![python version](https://img.shields.io/badge/Python-3.7%20%7C%203.8%20%7C%203.9-green)
+## Описание проетка [jabba.ddns.net](https://jabba.ddns.net/):
+
+
 
 Проект YaMDb собирает отзывы пользователей на различные произведения.
 
@@ -7,40 +11,36 @@
 
 Клонировать репозиторий и перейти в него в командной строке:
 
-```
+```bash
 git clone https://github.com/JabbaS15/yamdb_final.git
 ```
 
 
 Cоздать и активировать виртуальное окружение:
 
-```
+```bash
 python -m venv venv
-```
 
-```
 source venv/Scripts/activate
-```
 
-```
 python -m pip install --upgrade pip
 ```
 
 Установить зависимости из файла requirements.txt:
 
-```
+```bash
 pip install -r api_yamdb/requirements.txt 
 ```
 
 Выполнить миграции:
 
-```
+```bash
 python api_yamdb/manage.py migrate 
 ```
 
 Запустить проект:
 
-```
+```bash
 python manage.py runserver
 ```
 
@@ -112,39 +112,40 @@ EMAIL_HOST_PASSWORD="Email Password"
 
 ## Описание команд для запуска приложения в контейнерах
 - Перейдите в директорию `infra/`.
-- Выполните команду:
-```
-docker-compose up -d --build
-```
+
+### Выполните команды:
 - Применить миграции.
-```
-docker-compose exec web python manage.py migrate
-```
 - Создать суперпользователя.
-```
-docker-compose exec web python manage.py createsuperuser
-```
 - Собрать статику.
-```
-docker-compose exec web python manage.py collectstatic --no-input
-```
 - Запуск контейнера.
-```
-docker-compose up
-```
 - Для остановки контейнеров, выполните:
-```
+
+````bash
+docker-compose up -d --build
+
+docker-compose exec web python manage.py migrate
+
+docker-compose exec web python manage.py createsuperuser
+
+docker-compose exec web python manage.py collectstatic --no-input
+
+docker-compose up
+
 docker-compose down -v
-```
+````
 
 ## Описание команды для заполнения базы данными.
 
-````
-python3 manage.py shell  
-# выполнить в открывшемся терминале:
->>> from django.contrib.contenttypes.models import ContentType
->>> ContentType.objects.all().delete()
->>> quit()
+### Выполнить в открывшемся терминале:
 
-python manage.py loaddata fixtures.json
+```bash
+python manage.py shell
+```
+````python
+from django.contrib.contenttypes.models import ContentType
+ContentType.objects.all().delete()
+quit()
 ````
+```bash
+python manage.py loaddata fixtures.json
+```

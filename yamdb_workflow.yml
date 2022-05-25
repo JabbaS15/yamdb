@@ -4,6 +4,7 @@ on: [push]
 
 jobs:
   tests:
+    name: Test and pytest
     runs-on: ubuntu-latest
 
     steps:
@@ -11,7 +12,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
-        python-version: 3.7
+        python-version: [ "3.7", "3.8", "3.9", "3.10" ]
 
     - name: Install dependencies
       run: | 
@@ -29,6 +30,7 @@ jobs:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     needs: tests
+    if: github.ref == 'refs/heads/master'
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
@@ -45,11 +47,14 @@ jobs:
 
         with:
           push: true
-          tags: ${{ secrets.DOCKER_TAGS }}:latest
+          context: ./api_yamdb/
+          tags: jabbas15/yamdb_final:latest
 
   deploy:
+      name: Deploy
       runs-on: ubuntu-latest
       needs: build_and_push_to_docker_hub
+      if: github.ref == 'refs/heads/master'
       steps:
         - name: executing remote ssh commands to deploy
           uses: appleboy/ssh-action@master
@@ -59,6 +64,7 @@ jobs:
             key: ${{ secrets.SSH_KEY }}
             passphrase: ${{ secrets.PASSPHRASE }}
             script: |
+              sudo docker pull jabbas15/yamdb_final:latest
               sudo docker-compose stop
               sudo docker-compose rm web
               touch .env
@@ -72,12 +78,14 @@ jobs:
               echo EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }} >> .env
               sudo docker-compose up -d
   send_message:
+    name: Telegram Message
     runs-on: ubuntu-latest
     needs: deploy
+    if: github.ref == 'refs/heads/master'
     steps:
       - name: send message
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: ${{ github.workflow }} успешно выполнен!
+          message: Git Action успешно выполнен!
