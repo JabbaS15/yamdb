@@ -51,6 +51,7 @@ jobs:
         with:
           context: ./api_yamdb
           push: true
+          file: ./api_yamdb/Dockerfile
           tags: jabbas15/yamdb_final:latest
 
   deploy:
