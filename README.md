@@ -1,7 +1,7 @@
 ![example workflow](https://github.com/JabbaS15/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
 ![django version](https://img.shields.io/badge/Django-2.2.16-green)
 ![python version](https://img.shields.io/badge/Python-3.7%20%7C%203.8%20%7C%203.9-green)
-## Описание проетка [jabba.ddns.net](https://jabba.ddns.net/):
+## Описание проетка [jabba.ddns.net](http://84.201.139.152/api/v1/):
 
 
 
