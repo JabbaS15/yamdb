@@ -165,4 +165,4 @@ python manage.py loaddata fixtures.json
 - Отправка уведомления в телеграм-чат.
 
 ### Автор проекта:
-[Шведков Роман](https://github.com/JabbaS15)
+| [Шведков Роман](https://github.com/JabbaS15) | [Александр Хоменко](https://github.com/alkh0304) | [Марк Мазуров](https://github.com/MarkMazurov) |
